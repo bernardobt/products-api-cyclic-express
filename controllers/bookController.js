@@ -12,19 +12,19 @@ export const getBooks = async (req, res) => {
 };
 
 export const addBook = async (req, res) => {
-  const { tilte, subtilte, author, synopsis, rating } = req.body;
+  const { title, subtitle, author, synopsis, rating } = req.body;
 
-  if (!tilte || !author || !synopsis)
+  if (!title || !author || !synopsis)
     return res.status(400).json({
       message:
         "Title, author and synopsis are required for registering a new book",
     });
   try {
-    await bookService.addBook({ tilte, subtilte, author, synopsis, rating });
+    await bookService.addBook({ title, subtitle, author, synopsis, rating });
 
     res
       .status(201)
-      .json({ success: `New book ${tilte}: ${subtilte} created!` });
+      .json({ success: `New book ${title}: ${subtitle} created!` });
   } catch (error) {
     res.status(error?.status || 500).json({ message: error });
   }

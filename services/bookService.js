@@ -10,7 +10,6 @@ const getBooks = async () => {
 };
 
 const addBook = async (bookObject) => {
-  //   console.log("bookObject", bookObject);
   try {
     const createdBook = await BookDAL.addBook(bookObject);
     return createdBook;

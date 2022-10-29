@@ -18,6 +18,7 @@ const addBook = async (bookToAdd) => {
     bookToAdd.title,
     Book
   );
+  console.log("bookToAdd.title", bookToAdd.title);
   console.log("titleAlreadyExists", titleAlreadyExists);
   const subtitleAlreadyExists = await sharedServices.subtitleExists(
     bookToAdd.subtitle,
