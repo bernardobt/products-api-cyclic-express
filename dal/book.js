@@ -18,13 +18,10 @@ const addBook = async (bookToAdd) => {
     bookToAdd.title,
     Book
   );
-  console.log("bookToAdd.title", bookToAdd.title);
-  console.log("titleAlreadyExists", titleAlreadyExists);
   const subtitleAlreadyExists = await sharedServices.subtitleExists(
     bookToAdd.subtitle,
     Book
   );
-  console.log("subtitleAlreadyExists", subtitleAlreadyExists);
   if (titleAlreadyExists && subtitleAlreadyExists)
     throw {
       status: 409,
