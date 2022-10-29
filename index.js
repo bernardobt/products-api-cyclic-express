@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import BookRouterV1 from "./v1/routes/bookRoutes.js";
+import test from "./v1/routes/home.js";
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use("/api/v1/books", BookRouterV1);
+app.use("/", test);
 // app.use("/api/v1/comics", RegisterRouterV1);
 // app.use("/api/v1/games", RegisterRouterV1);
 
