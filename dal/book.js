@@ -72,9 +72,19 @@ const updateBook = async (bookId, bookObject) => {
   }
 };
 
+const getBookById = async (bookId) => {
+  try {
+    const itemToGet = await sharedServices.getItemById(bookId, Book);
+    return itemToGet;
+  } catch (error) {
+    throw { status: 500, message: error?.message?.message || error };
+  }
+};
+
 export default {
   getBooks,
   addBook,
   deleteBook,
   updateBook,
+  getBookById,
 };

@@ -3,7 +3,7 @@ import express from "express";
 /* import controllers */
 import {
   getBooks,
-  //   getBook,
+  getBookById,
   addBook,
   updateBook,
   deleteBook,
@@ -18,7 +18,7 @@ const router = express.Router();
 // dal interects with db
 router.get("/", getBooks);
 router.post("/", addBook);
-// router.get("/:id", getBook);
+router.get("/:id", getBookById);
 router.patch("/:id", updateBook);
 router.delete("/:id", deleteBook);
 

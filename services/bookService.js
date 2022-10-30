@@ -36,9 +36,19 @@ const updateBook = async (bookId, bookObject) => {
   }
 };
 
+const getBookById = async (id) => {
+  try {
+    const book = await BookDAL.getBookById(id);
+    return book;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   getBooks,
   addBook,
   deleteBook,
   updateBook,
+  getBookById,
 };

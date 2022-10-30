@@ -64,3 +64,18 @@ export const updateBook = async (req, res) => {
       .send({ status: "FAILED", data: { error: error?.message || error } });
   }
 };
+
+export const getBookById = async (req, res) => {
+  const { id } = req.params;
+  if (!id)
+    return res.status(400).json({
+      message: "ID is required for getting information of a book",
+    });
+  try {
+    const book = await bookService.getBookById(id);
+
+    res.status(201).json({ data: book });
+  } catch (error) {
+    res.status(error?.status || 500).json({ message: error });
+  }
+};
