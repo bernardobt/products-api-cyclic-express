@@ -37,7 +37,16 @@ const addBook = async (bookToAdd) => {
   }
 };
 
+const deleteBook = async (bookId) => {
+  try {
+    await sharedServices.deleteById(bookId, Book);
+  } catch (error) {
+    throw { status: 500, message: error?.message || error };
+  }
+};
+
 export default {
   getBooks,
   addBook,
+  deleteBook,
 };

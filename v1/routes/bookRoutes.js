@@ -6,7 +6,7 @@ import {
   //   getBook,
   addBook,
   //   updateBook,
-  //   deleteBook,
+  deleteBook,
 } from "../../controllers/bookController.js";
 
 const router = express.Router();
@@ -20,6 +20,6 @@ router.get("/", getBooks);
 router.post("/", addBook);
 // router.get("/:id", getBook);
 // router.patch("/:id", updateBook);
-// router.delete("/:id", deleteBook);
+router.delete("/:id", deleteBook);
 
 export default router;

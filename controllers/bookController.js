@@ -29,3 +29,18 @@ export const addBook = async (req, res) => {
     res.status(error?.status || 500).json({ message: error });
   }
 };
+
+export const deleteBook = async (req, res) => {
+  const { id } = req.params;
+  if (!id)
+    return res.status(400).json({
+      message: "ID is required for deleting a book",
+    });
+  try {
+    await bookService.deleteBook(id);
+
+    res.status(201).json({ success: `Book ${id}: successfully deleted` });
+  } catch (error) {
+    res.status(error?.status || 500).json({ message: error });
+  }
+};

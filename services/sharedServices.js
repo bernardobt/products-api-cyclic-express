@@ -25,9 +25,25 @@ const subtitleExists = async (subtitle, model) => {
 //   return foundProduct;
 // };
 
+const deleteById = async (id, model) => {
+  try {
+    const deletedItem = await model.findByIdAndDelete(id).exec();
+    if (!deletedItem) {
+      throw {
+        status: 404,
+        message: "Can't find Item with the id",
+      };
+    }
+    return deletedItem;
+  } catch (error) {
+    throw { status: 500, message: error };
+  }
+};
+
 export default {
   titleExists,
   subtitleExists,
   //   findProductByTitle,
   //   findProductByAuthor,
+  deleteById,
 };

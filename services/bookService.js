@@ -18,7 +18,17 @@ const addBook = async (bookObject) => {
   }
 };
 
+const deleteBook = async (id) => {
+  try {
+    const deletedBook = await BookDAL.deleteBook(id);
+    return deletedBook;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   getBooks,
   addBook,
+  deleteBook,
 };
