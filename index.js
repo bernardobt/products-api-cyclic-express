@@ -14,8 +14,8 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.use("/api/v1/books", BookRouterV1);
 app.use("/", HomeRouterV1);
+app.use("/api/v1/books", BookRouterV1);
 // app.use("/api/v1/comics", RegisterRouterV1);
 // app.use("/api/v1/games", RegisterRouterV1);
 

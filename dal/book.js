@@ -33,7 +33,7 @@ const addBook = async (bookToAdd) => {
     await newBook.save();
     return newBook;
   } catch (error) {
-    throw { status: 500, message: error?.message || error };
+    throw { status: 500, message: error?.message?.message || error };
   }
 };
 
@@ -41,7 +41,34 @@ const deleteBook = async (bookId) => {
   try {
     await sharedServices.deleteById(bookId, Book);
   } catch (error) {
-    throw { status: 500, message: error?.message || error };
+    throw { status: 500, message: error?.message?.message || error };
+  }
+};
+
+const updateBook = async (bookId, bookObject) => {
+  const titleAlreadyExists = await sharedServices.titleExists(
+    bookObject.title,
+    Book
+  );
+  const subtitleAlreadyExists = await sharedServices.subtitleExists(
+    bookObject.subtitle,
+    Book
+  );
+  if (titleAlreadyExists && subtitleAlreadyExists)
+    throw {
+      status: 409,
+      mesage: "Title and Subtitle already registered",
+    };
+
+  try {
+    const updatedUser = await sharedServices.updateById(
+      bookId,
+      bookObject,
+      Book
+    );
+    return updatedUser;
+  } catch (error) {
+    throw { status: 500, message: error?.message?.message || error };
   }
 };
 
@@ -49,4 +76,5 @@ export default {
   getBooks,
   addBook,
   deleteBook,
+  updateBook,
 };

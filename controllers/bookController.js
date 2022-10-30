@@ -44,3 +44,23 @@ export const deleteBook = async (req, res) => {
     res.status(error?.status || 500).json({ message: error });
   }
 };
+
+export const updateBook = async (req, res) => {
+  // const { body, params } = req;
+  const { title, subtitle, author, synopsis, rating } = req.body;
+  const { id } = req.params;
+  try {
+    const updatedBook = await bookService.updateBook(id, {
+      title,
+      subtitle,
+      author,
+      synopsis,
+      rating,
+    });
+    res.status(201).send({ status: "OK", data: updatedBook });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};

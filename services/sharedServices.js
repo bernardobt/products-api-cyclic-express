@@ -39,6 +39,25 @@ const deleteById = async (id, model) => {
     throw { status: 500, message: error };
   }
 };
+const updateById = async (id, object, model) => {
+  console.log("id", id);
+  console.log("object", object);
+  try {
+    const updatedItem = await model.findByIdAndUpdate(id, object, {
+      new: true,
+    });
+    // if (!updatedItem) {
+    //   throw {
+    //     status: 404,
+    //     message: "Can't find Item with the id",
+    //   };
+    // }
+    console.log("updatedItem", updatedItem);
+    return updatedItem;
+  } catch (error) {
+    throw { status: 500, message: error };
+  }
+};
 
 export default {
   titleExists,
@@ -46,4 +65,5 @@ export default {
   //   findProductByTitle,
   //   findProductByAuthor,
   deleteById,
+  updateById,
 };
