@@ -4,8 +4,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import BookRouterV1 from "./v1/routes/bookRoutes.js";
 import HomeRouterV1 from "./v1/routes/home.js";
+import BookRouterV1 from "./v1/routes/bookRoutes.js";
+import CategoryRouterV1 from "./v1/routes/categoryRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use("/", HomeRouterV1);
 app.use("/api/v1/books", BookRouterV1);
+app.use("/api/v1/categories", CategoryRouterV1);
 // app.use("/api/v1/comics", RegisterRouterV1);
 // app.use("/api/v1/games", RegisterRouterV1);
 

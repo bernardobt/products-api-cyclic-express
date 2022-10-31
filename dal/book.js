@@ -1,12 +1,21 @@
-import sharedServices from "../services/sharedServices.js";
+import sharedServices from "./sharedServices.js";
 
 // Model are being imported here because the are used as arguments for shared functions that can be reused
 // for different data models
 import Book from "../models/bookModel.js";
 
+// const getBooks = async () => {
+//   try {
+//     const books = await Book.find().exec();
+//     return books;
+//   } catch (error) {
+//     throw { status: 500, message: error };
+//   }
+// };
+
 const getBooks = async () => {
   try {
-    const books = await Book.find().exec();
+    const books = await sharedServices.getItems(Book);
     return books;
   } catch (error) {
     throw { status: 500, message: error };

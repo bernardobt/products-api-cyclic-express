@@ -15,61 +15,68 @@ const subtitleExists = async (subtitle, model) => {
   return alreadyExists;
 };
 
-// const findProductByTitle = async (title) => {
-//   const foundProduct = await Book.findOne({ title: title }).exec();
-//   return foundProduct;
-// };
-
-// const findProductByAuthor = async (title) => {
-//   const foundProduct = await Book.findOne({ title: title }).exec();
-//   return foundProduct;
-// };
+const propertyExists = async (property, model) => {
+  const alreadyExists = (await model.findOne({ property }).exec())
+    ? true
+    : false;
+  return alreadyExists;
+};
 
 const deleteById = async (id, model) => {
   try {
     const deletedItem = await model.findByIdAndDelete(id).exec();
-    if (!deletedItem) {
-      throw {
-        status: 404,
-        message: "Can't find Item with the id",
-      };
-    }
     return deletedItem;
   } catch (error) {
-    throw { status: 500, message: error };
+    throw { status: 500, message: error?.message?.message || error };
   }
 };
 
 const updateById = async (id, object, model) => {
-  console.log("id", id);
-  console.log("object", object);
   try {
     const updatedItem = await model.findByIdAndUpdate(id, object, {
       new: true,
     });
-    console.log("updatedItem", updatedItem);
     return updatedItem;
   } catch (error) {
-    throw { status: 500, message: error };
+    throw { status: 500, message: error?.message?.message || error };
   }
 };
 
 const getItemById = async (id, model) => {
-  console.log("id", id);
   try {
     const itemToGet = await model.findById(id).exec();
     return itemToGet;
   } catch (error) {
-    throw { status: 500, message: error };
+    throw { status: 500, message: error?.message?.message || error };
+  }
+};
+
+const getItems = async (model) => {
+  try {
+    const allItems = await model.find().exec();
+    return allItems;
+  } catch (error) {
+    throw { status: 500, message: error?.message?.message || error };
+  }
+};
+
+const addItem = async (itemToAdd, model) => {
+  try {
+    const newItem = await new model(itemToAdd);
+    await newItem.save();
+    return newItem;
+  } catch (error) {
+    throw { status: 500, message: error?.message?.message || error };
   }
 };
 
 export default {
   titleExists,
   subtitleExists,
-  //   findProductByTitle,
-  //   findProductByAuthor,
+  propertyExists,
+  addItem,
   deleteById,
   updateById,
   getItemById,
+  getItems,
 };
