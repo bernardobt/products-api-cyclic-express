@@ -15,8 +15,11 @@ const subtitleExists = async (subtitle, model) => {
   return alreadyExists;
 };
 
-const propertyExists = async (property, model) => {
-  const alreadyExists = (await model.findOne({ property }).exec())
+// not working as expected
+const propertyExists = async (propertyName, propertyValue, model) => {
+  const alreadyExists = (await model
+    .findOne({ propertyName: propertyValue })
+    .exec())
     ? true
     : false;
   return alreadyExists;
