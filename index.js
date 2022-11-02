@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import HomeRouterV1 from "./v1/routes/home.js";
+import ProductsRouterV1 from "./v1/routes/productRoutes.js";
 import BookRouterV1 from "./v1/routes/bookRoutes.js";
 import CategoryRouterV1 from "./v1/routes/categoryRoutes.js";
 
@@ -13,9 +14,15 @@ dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:5000"],
+    credentials: true,
+  })
+);
 
 app.use("/", HomeRouterV1);
+app.use("/api/v1/products", ProductsRouterV1);
 app.use("/api/v1/books", BookRouterV1);
 app.use("/api/v1/categories", CategoryRouterV1);
 // app.use("/api/v1/comics", RegisterRouterV1);
