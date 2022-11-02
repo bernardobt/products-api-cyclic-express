@@ -1,4 +1,4 @@
-# products-api-deta-express
+# products-api-cyclic-express
 
 Study Project for deploying a Products API
 

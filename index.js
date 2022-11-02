@@ -6,8 +6,10 @@ import dotenv from "dotenv";
 
 import HomeRouterV1 from "./v1/routes/home.js";
 import ProductsRouterV1 from "./v1/routes/productRoutes.js";
-import BookRouterV1 from "./v1/routes/bookRoutes.js";
+import UserRouterV1 from "./v1/routes/userRoutes.js";
 import CategoryRouterV1 from "./v1/routes/categoryRoutes.js";
+
+import BookRouterV1 from "./v1/routes/bookRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -23,8 +25,10 @@ app.use(
 
 app.use("/", HomeRouterV1);
 app.use("/api/v1/products", ProductsRouterV1);
-app.use("/api/v1/books", BookRouterV1);
+app.use("/api/v1/users", UserRouterV1);
 app.use("/api/v1/categories", CategoryRouterV1);
+
+app.use("/api/v1/books", BookRouterV1);
 // app.use("/api/v1/comics", RegisterRouterV1);
 // app.use("/api/v1/games", RegisterRouterV1);
 
