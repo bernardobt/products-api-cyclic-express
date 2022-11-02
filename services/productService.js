@@ -10,6 +10,16 @@ const getProducts = async () => {
   }
 };
 
+const getProductById = async (id) => {
+  try {
+    const product = await DAL.getItemById(id, Product);
+    return product;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   getProducts,
+  getProductById,
 };

@@ -74,7 +74,7 @@ export const getBookById = async (req, res) => {
   try {
     const book = await bookService.getBookById(id);
 
-    res.status(201).json({ data: book });
+    res.status(200).json({ data: book });
   } catch (error) {
     res.status(error?.status || 500).json({ message: error });
   }
