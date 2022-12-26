@@ -3,7 +3,7 @@ import categoryService from "../services/categoryService.js";
 export const getCategories = async (req, res) => {
   try {
     const allCategories = await categoryService.getCategories();
-    res.send({ status: "OK", data: allCategories });
+    res.status(200).send({ data: allCategories });
   } catch (error) {
     res
       .status(error?.status || 500)
@@ -51,7 +51,7 @@ export const updateCategory = async (req, res) => {
     const updatedCategory = await categoryService.updateCategory(id, {
       name,
     });
-    res.status(201).send({ status: "OK", data: updatedCategory });
+    res.status(200).send({ status: "OK", data: updatedCategory });
   } catch (error) {
     res
       .status(error?.status || 500)

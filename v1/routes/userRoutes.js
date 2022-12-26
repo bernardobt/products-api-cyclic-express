@@ -1,7 +1,11 @@
 import express from "express";
 
 /* import controllers */
-import { getUsers, getUserById } from "../../controllers/userController.js";
+import {
+  getUsers,
+  getUserById,
+  getProductsByUserById,
+} from "../../controllers/userController.js";
 
 const router = express.Router();
 
@@ -12,5 +16,6 @@ const router = express.Router();
 // dal interects with db
 router.get("/", getUsers);
 router.get("/:id", getUserById);
+router.get("/:id/info", getProductsByUserById);
 
 export default router;
